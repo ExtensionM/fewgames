@@ -1,9 +1,15 @@
-#include <stdio.h>
+#include "Application.h"
+#include "MainWindow.h"
 
+[System::STAThreadAttribute()]
 int main(){
 	
-	System::Console::WriteLine("Hogera");
-	System::Console::Read();
+	System::Console::WriteLine("Started");
+	Minesweeper::MyApplication ^MyApp = gcnew Minesweeper::MyApplication();
+	Minesweeper::MainWindow ^Main = gcnew Minesweeper::MainWindow();
+
+
+	MyApp->Run(Main);
 
 	return 0;
 }

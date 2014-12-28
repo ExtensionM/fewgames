@@ -1,7 +1,7 @@
 
 
 namespace Minesweeper{
-	class MainWindow //:public System::Windows::Window
+	public ref class MainWindow :public System::Windows::Window
 	{
 	public:
 		MainWindow();
