@@ -1,7 +1,7 @@
 #include "Application.h"
 #include "MainWindow.h"
 
-[System::STAThreadAttribute()]
+[STAThreadAttribute()]
 int main(){
 	
 	System::Console::WriteLine("Started");
