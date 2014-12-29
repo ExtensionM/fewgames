@@ -12,16 +12,32 @@ namespace Minesweeper{
 	{
 	}
 	void MainWindow::OnLoaded(Object^ sender, RoutedEventArgs^ e){
-		this->MyGrid = gcnew Grid();
-		Color c = Colors::White;
-
-		SolidColorBrush^ Brush = gcnew SolidColorBrush(c);
-		this->MyGrid->Background = Brush;
-		this->AddChild(this->MyGrid);
-		this->MyGrid->Margin = Thickness(0, 0, 0, 0);
-		this->VerticalAlignment = System::Windows::VerticalAlignment::Stretch;
-		this->HorizontalAlignment = System::Windows::HorizontalAlignment::Stretch;
+		UIinit();
 	}
 
+	void MainWindow::UIinit(){
+		this->MyGrid = gcnew Grid();
+		this->HeaderRow = gcnew RowDefinition();
+		this->SpqceRow = gcnew RowDefinition();
+		this->GameRow = gcnew RowDefinition();
 
+		this->GameGrid = gcnew Grid();
+		
+		this->HeaderRow->Height = GridLength(30);
+		this->SpqceRow->Height = GridLength(10);
+		this->GameRow->Height = GridLength(1, GridUnitType::Star);
+
+		this->MyGrid->RowDefinitions->Add(this->HeaderRow);
+		this->MyGrid->RowDefinitions->Add(this->SpqceRow);
+		this->MyGrid->RowDefinitions->Add(this->GameRow);
+
+		
+		this->GameGrid->Margin = Thickness(5, 5, 5, 5);
+		this->GameGrid->Background = gcnew SolidColorBrush(Color::FromRgb(200, 200, 200));
+		Grid::SetRow(this->GameGrid, 2);
+
+		this->MyGrid->Children->Add(this->GameGrid);
+
+		this->AddChild(this->MyGrid);
+	}
 }

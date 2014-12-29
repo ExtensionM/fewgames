@@ -14,9 +14,40 @@ namespace Minesweeper{
 	private:
 		void OnLoaded(Object^ sender, RoutedEventArgs^ e);
 
-		
-		Grid^ MyGrid = nullptr;
+		void UIinit();
+
+		//一番上のグリッド
+		Grid^ MyGrid;
+		//RowDefinetions
+		//ヘッダ
+		RowDefinition^ HeaderRow;
+		//隙間
+		RowDefinition^ SpqceRow;
+		//ゲーム
+		RowDefinition^ GameRow;
+		//ゲームをここに作る
+		Grid^ GameGrid;
 
 	};
 
 }
+
+
+/*
+<Window>
+<Grid>
+<RowDefinetion1>
+ヘッダ
+</RowDefinetion1>
+<RowDefinetion2>
+隙間
+</RowDefinetion2>
+<RowDefinetion3>
+ゲーム
+</RowDefinetion3>
+</Grid>
+</Window>
+
+
+
+*/
