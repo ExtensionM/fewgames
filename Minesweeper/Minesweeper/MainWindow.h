@@ -1,3 +1,4 @@
+#include "Minesweeper.h"
 using namespace System;
 using namespace System::Windows;
 using namespace System::Windows::Controls;
@@ -14,6 +15,8 @@ namespace Minesweeper{
 	private:
 		void OnLoaded(Object^ sender, RoutedEventArgs^ e);
 
+		void NewGameClicked(Object^ sender, RoutedEventArgs^ e);
+
 		void UIinit();
 
 		//一番上のグリッド
@@ -26,7 +29,18 @@ namespace Minesweeper{
 		//ゲーム
 		RowDefinition^ GameRow;
 		//ゲームをここに作る
-		Grid^ GameGrid;
+		Viewbox^ GameView;
+		//ゲームの中身
+		UniformGrid^ GameUniformGrid;
+
+		//上にあるメニュー
+		Menu^ TopMenu;
+		//ゲームタブ
+		MenuItem^ GameMenu;
+		
+		MenuItem^ NewGameMenuItem;
+
+		Minesweeper::Game^ MainGame;
 
 	};
 

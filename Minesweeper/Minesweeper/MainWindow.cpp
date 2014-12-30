@@ -13,31 +13,55 @@ namespace Minesweeper{
 	}
 	void MainWindow::OnLoaded(Object^ sender, RoutedEventArgs^ e){
 		UIinit();
+		MainGame = gcnew Game(GameUniformGrid);
+	}
+	void MainWindow::NewGameClicked(Object^ sender, RoutedEventArgs^ e){
+		MessageBox::Show("V‚µ‚¢ƒQ[ƒ€");
+		MainGame->StartGame(5, 8, 10);
 	}
 
 	void MainWindow::UIinit(){
-		this->MyGrid = gcnew Grid();
-		this->HeaderRow = gcnew RowDefinition();
-		this->SpqceRow = gcnew RowDefinition();
-		this->GameRow = gcnew RowDefinition();
+		MyGrid = gcnew Grid();
+		HeaderRow = gcnew RowDefinition();
+		SpqceRow = gcnew RowDefinition();
+		GameRow = gcnew RowDefinition();
+		GameView = gcnew Viewbox();
+		GameUniformGrid = gcnew UniformGrid();
+		TopMenu = gcnew Menu();
 
-		this->GameGrid = gcnew Grid();
+
+
+		HeaderRow->Height = GridLength(21);
+		SpqceRow->Height = GridLength(10);
+		GameRow->Height = GridLength(1, GridUnitType::Star);
+
+		MyGrid->RowDefinitions->Add(HeaderRow);
+		MyGrid->RowDefinitions->Add(SpqceRow);
+		MyGrid->RowDefinitions->Add(GameRow);
+
+
+		GameView->Margin = Thickness(5, 5, 5, 5);
+		GameView->Stretch = Stretch::Uniform;
+		Grid::SetRow(GameView, 2);
+
+
+		GameMenu = gcnew MenuItem();
+		GameMenu->Header = "ƒQ[ƒ€";
+		NewGameMenuItem = gcnew MenuItem();
+		NewGameMenuItem->Header = "V‚µ‚¢ƒQ[ƒ€";
+		NewGameMenuItem->Click += gcnew RoutedEventHandler(this, &MainWindow::NewGameClicked);
+
+		GameMenu->Items->Add(NewGameMenuItem);
+		TopMenu->Items->Add(GameMenu);
 		
-		this->HeaderRow->Height = GridLength(30);
-		this->SpqceRow->Height = GridLength(10);
-		this->GameRow->Height = GridLength(1, GridUnitType::Star);
 
-		this->MyGrid->RowDefinitions->Add(this->HeaderRow);
-		this->MyGrid->RowDefinitions->Add(this->SpqceRow);
-		this->MyGrid->RowDefinitions->Add(this->GameRow);
+		Grid::SetRow(TopMenu, 0);
 
-		
-		this->GameGrid->Margin = Thickness(5, 5, 5, 5);
-		this->GameGrid->Background = gcnew SolidColorBrush(Color::FromRgb(200, 200, 200));
-		Grid::SetRow(this->GameGrid, 2);
+		GameView->Child = GameUniformGrid;
 
-		this->MyGrid->Children->Add(this->GameGrid);
+		MyGrid->Children->Add(GameView);
+		MyGrid->Children->Add(TopMenu);
 
-		this->AddChild(this->MyGrid);
+		AddChild(MyGrid);
 	}
 }
