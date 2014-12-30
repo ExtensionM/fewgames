@@ -18,16 +18,15 @@ namespace Minesweeper{
 		Buttons = gcnew array < Button^ >(Row*Column);
 		GameGrid->Rows = Row;
 		GameGrid->Columns = Column;
-		for (int x = 0; x < Column; x++)
+		for (int y = 0; y < Row; y++)
 		{
-			for (int y = 0; y < Row; y++)
+			for (int x = 0; x < Column; x++)
 			{
 				Buttons[x + y*Column] = gcnew Button();
 				Button^ Btn = Buttons[x + y*Column];
 				Btn->Height = 24;
 				Btn->Width = 24;
-				Grid::SetColumn(Buttons[x + y*Column], x);
-				Grid::SetRow(Buttons[x + y*Column], y);
+				Btn->Content = x.ToString() + y.ToString();
 				GameGrid->Children->Add(Btn);
 			}
 		}
